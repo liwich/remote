@@ -1,4 +1,17 @@
-.welcome-card ion-img {
-  max-height: 35vh;
-  overflow: hidden;
+.avatar{
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+}
+
+.no-songs{
+  text-align: center;
+  .icon{
+    font-size: 100px;
+    text-align: center;
+  }
+}
+
+.current-song{
+  text-align: center;
 }
