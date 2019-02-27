@@ -16,8 +16,6 @@ module.exports = (app) => {
      *     responses:
      *       200:
      *         description: Profile object
-     *         schema:
-     *           $ref: '#/definitions/users'
      */
     app.get('/profile', c(controller.index))
 
@@ -33,8 +31,6 @@ module.exports = (app) => {
      *     responses:
      *       200:
      *         description: Profile object
-     *         schema:
-     *           $ref: '#/definitions/users'
      */
     app.get('/profile/listening', c(controller.listening))
 
@@ -50,8 +46,6 @@ module.exports = (app) => {
      *     responses:
      *       200:
      *         description: Profile object
-     *         schema:
-     *           $ref: '#/definitions/users'
      */
     app.get('/profile/playlists', c(controller.playlists))
 
@@ -67,8 +61,8 @@ module.exports = (app) => {
      *     responses:
      *       200:
      *         description: Profile object
-     *         schema:
-     *           $ref: '#/definitions/users'
      */
     app.get('/profile/playlist/:playlistId/tracks', c(controller.playlistTracks, (req, res, next) => [req.params.playlistId]))
+
+    app.post('/profile/playlist/:name', c(controller.addPlaylist, (req, res, next) => [req.params.name]))
 }

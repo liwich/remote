@@ -7,51 +7,57 @@ const spotifyApi = new SpotifyWebApi({
 })
 
 module.exports = () => {
-
     return {
-        getProfile: async () => {
-            await refreshAccessToken()
-            const data = await spotifyApi.getMe()
-            return data.body || {}
-        },
-
-        getProfileCurrentSong: async () => {
-            await refreshAccessToken()
-            const data = await spotifyApi.getMyCurrentPlayingTrack()
-            return data.body || {}
-        },
-
-        profilePlaylists: async () => {
-            await refreshAccessToken()
-            const data = await spotifyApi.getUserPlaylists()
-            return data.body || []
-        },
-
-        playlistTracks: async (playlistId) => {
-            await refreshAccessToken()
-            const data = await spotifyApi.getPlaylistTracks(playlistId)
-            return data.body || {}
-        },
-
-        addPlaylist: async (profileId, name) => {
-            await refreshAccessToken()
-            const data = await spotifyApi.createPlaylist(profileId, name)
-            return data.body || {}
-        },
-
-        addPlaylistTrack: async (playlistId, tracks) => {
-            await refreshAccessToken()
-            const data = await spotifyApi.addTracksToPlaylist(playlistId, tracks)
-            return data.body || {}
-        },
-
-        removePlaylistTrack: async (playlistId, tracks) => {
-            await refreshAccessToken()
-            const data = await spotifyApi.removeTracksFromPlaylist(playlistId, tracks)
-            return data.body || {}
-        }
+        getProfile: getProfile,
+        getProfileCurrentSong: getProfileCurrentSong,
+        profilePlaylists: profilePlaylists,
+        playlistTracks: playlistTracks,
+        addPlaylist: addPlaylist,
+        addPlaylistTrack: addPlaylistTrack,
+        removePlaylistTrack: removePlaylistTrack
     }
+}
 
+async function getProfile() {
+    await refreshAccessToken()
+    const data = await spotifyApi.getMe()
+    return data.body || {}
+}
+
+async function getProfileCurrentSong() {
+    await refreshAccessToken()
+    const data = await spotifyApi.getMyCurrentPlayingTrack()
+    return data.body || {}
+}
+
+async function profilePlaylists() {
+    await refreshAccessToken()
+    const data = await spotifyApi.getUserPlaylists()
+    return data.body || []
+}
+
+async function playlistTracks(playlistId) {
+    await refreshAccessToken()
+    const data = await spotifyApi.getPlaylistTracks(playlistId)
+    return data.body || {}
+}
+
+async function addPlaylist(name) {
+    await refreshAccessToken()
+    const profile = await getProfile()
+    const data = await spotifyApi.createPlaylist(profile.id, name)
+    return data.body || {}
+}
+async function addPlaylistTrack(playlistId, tracks) {
+    await refreshAccessToken()
+    const data = await spotifyApi.addTracksToPlaylist(playlistId, tracks)
+    return data.body || {}
+}
+
+async function removePlaylistTrack(playlistId, tracks) {
+    await refreshAccessToken()
+    const data = await spotifyApi.removeTracksFromPlaylist(playlistId, tracks)
+    return data.body || {}
 }
 
 function refreshAccessToken() {
