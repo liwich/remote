@@ -13,6 +13,7 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const mongoose = require('mongoose')
+const swaggerJSDoc = require('swagger-jsdoc')
 
 // ---------------------------------------------------------------------------------------
 
@@ -26,6 +27,30 @@ app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
+
+// ---------------------------------------------------------------------------------------
+
+// swagger definition
+var swaggerDefinition = {
+    info: {
+        title: 'Spotify Remote Api',
+        version: '1.0.0',
+        description: 'Description',
+    },
+    host: 'localhost:3000',
+    basePath: '/',
+}
+// options for the swagger docs
+var options = {
+    // import swaggerDefinitions
+    swaggerDefinition: swaggerDefinition,
+    // path to the API docs
+    apis: ['./**/routes/*.js'],// pass all in array 
+}
+// initialize swagger-jsdoc
+var swaggerSpec = swaggerJSDoc(options)
+
+app.get('/swagger.json', function (req, res) { res.setHeader('Content-Type', 'application/json'); res.send(swaggerSpec) })
 
 // ---------------------------------------------------------------------------------------
 
@@ -48,7 +73,6 @@ load('models', { cwd: 'app' })
     .then('middlewares')
     .then('routes')
     .into(app)
-
 // ---------------------------------------------------------------------------------------
 
 // Catch not found and forward to error handler
