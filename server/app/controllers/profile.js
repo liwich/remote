@@ -1,5 +1,7 @@
 
-module.exports = () => {
+module.exports = (app) => {
+    const services = app.services
+
     return {
 
         /**
@@ -7,7 +9,7 @@ module.exports = () => {
          * route: /profile
          */
         index: async () => {
-            return {profile: true}
+            return await services.spotifyApi.get()
         }
 
     }

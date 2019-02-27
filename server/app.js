@@ -43,8 +43,8 @@ if (process.env.MONGO_DB) {
 // Express load
 load('models', { cwd: 'app' })
     .then('helpers')
-    .then('controllers')
     .then('services')
+    .then('controllers')
     .then('middlewares')
     .then('routes')
     .into(app)
