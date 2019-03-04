@@ -6,7 +6,7 @@ export const environment = {
   production: false
 };
 
-export const API_URL = 'http://localhost:5000/triorewards-2b40e/us-central1';
+export const API_URL = 'http://localhost:3000';
 
 /*
  * For easier debugging in development mode, you can import the following file

@@ -14,6 +14,7 @@ const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const mongoose = require('mongoose')
 const swaggerJSDoc = require('swagger-jsdoc')
+const cors = require('cors')
 
 // ---------------------------------------------------------------------------------------
 
@@ -27,6 +28,7 @@ app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
+app.use(cors())
 
 // ---------------------------------------------------------------------------------------
 

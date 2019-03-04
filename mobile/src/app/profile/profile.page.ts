@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { ProfileService } from '../services/profile.service';
 
 @Component({
-  selector: 'app-tab1',
-  templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss']
+  selector: 'app-profile',
+  templateUrl: 'profile.page.html',
+  styleUrls: ['profile.page.scss']
 })
-export class Tab1Page {
+export class ProfilePage {
   profile: any;
   profile$: any;
   currentSong$: any;

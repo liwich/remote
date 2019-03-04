@@ -15,6 +15,6 @@ export class ProfileService {
   }
 
   getCurrentSong(): Observable<any> {
-    return this.http.get(`${API_URL}/profileCurrentSong`);
+    return this.http.get(`${API_URL}/profile/listening`);
   }
 }
