@@ -29,7 +29,8 @@ export class AppComponent {
       this.profileService.getProfile()
       .subscribe((profile) => {
         this.router.navigateByUrl('');
-      });
+      },
+      (err) => this.router.navigateByUrl('profile-error'));
     });
   }
 }

@@ -12,4 +12,8 @@ export class ProfileErrorPage implements OnInit {
   ngOnInit() {
   }
 
+  retry(){
+    window.location.reload();
+  }
+
 }

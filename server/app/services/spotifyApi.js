@@ -33,7 +33,7 @@ async function getProfileCurrentSong() {
 async function profilePlaylists() {
     await refreshAccessToken()
     const data = await spotifyApi.getUserPlaylists()
-    return data.body || []
+    return data.body.items || []
 }
 
 async function playlistTracks(playlistId) {

@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>
+      Playlists
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let playlist of playlists | async">
+      <ion-avatar slot="start">
+        <img [src]="">
+      </ion-avatar>
+      <ion-label>{{playlist.name}}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
