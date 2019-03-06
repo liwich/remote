@@ -7,12 +7,12 @@ module.exports = () => {
      * that maps our desired controller parameters. I.e. (req) => [req.params.username, ...].
      */
     return (promise, params) => async (req, res, next) => {
-        const boundParams = params ? params(req, res, next) : []
+        const boundParams = params ? params(req, res, next) : [];
         try {
-            const result = await promise(...boundParams)
-            return res.json(result || { message: 'OK' })
+            const result = await promise(...boundParams);
+            return res.json(result || { message: 'OK' });
         } catch (error) {
-            return res.status(500).json(error)
+            return res.status(500).json(error);
         }
-    }
-}
+    };
+};

@@ -1,8 +1,8 @@
 module.exports = (app) => {
 
     // Profile controller
-    let controller = app.controllers.profile
-    let c = app.helpers.controllerHandler
+    let controller = app.controllers.profile;
+    let c = app.helpers.controllerHandler;
 
     /**
      * @swagger
@@ -17,7 +17,7 @@ module.exports = (app) => {
      *       200:
      *         description: Profile object
      */
-    app.get('/profile', c(controller.index))
+    app.get('/profile', c(controller.index));
 
     /**
      * @swagger
@@ -32,7 +32,7 @@ module.exports = (app) => {
      *       200:
      *         description: Profile object
      */
-    app.get('/profile/listening', c(controller.listening))
+    app.get('/profile/listening', c(controller.listening));
 
     /**
      * @swagger
@@ -47,7 +47,7 @@ module.exports = (app) => {
      *       200:
      *         description: Profile object
      */
-    app.get('/profile/playlists', c(controller.playlists))
+    app.get('/profile/playlists', c(controller.playlists));
 
     /**
      * @swagger
@@ -62,7 +62,7 @@ module.exports = (app) => {
      *       200:
      *         description: Profile object
      */
-    app.get('/profile/playlist/:playlistId/tracks', c(controller.playlistTracks, (req, res, next) => [req.params.playlistId]))
+    app.get('/profile/playlist/:playlistId/tracks', c(controller.playlistTracks, (req, res, next) => [req.params.playlistId]));
 
-    app.post('/profile/playlist/:name', c(controller.addPlaylist, (req, res, next) => [req.params.name]))
-}
+    app.post('/profile/playlist/:name', c(controller.addPlaylist, (req, res, next) => [req.params.name]));
+};

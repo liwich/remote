@@ -15,16 +15,16 @@ module.exports = (app) => {
                             status: true,
                             message: 'User has been successfully registered.',
                             data: user
-                        }
+                        };
                     })
                     .catch(err => {
         
                         for (var key in err.errors) {
-                            throw new Error(err.errors[key].message)
+                            throw new Error(err.errors[key].message);
                         }
         
-                        throw new Error(err)
-                    })
+                        throw new Error(err);
+                    });
         
             } catch (e) {
         
@@ -33,7 +33,7 @@ module.exports = (app) => {
                     status: false,
                     message: e.message || 'Could not register user.',
                     exception: e.message
-                }
+                };
         
             }
             
@@ -47,41 +47,41 @@ module.exports = (app) => {
                     .then(async user => {
         
                         if (data.name) {
-                            user.name = data.name
+                            user.name = data.name;
                         }
         
                         if (data.email) {
-                            user.email = data.email
+                            user.email = data.email;
                         }
         
                         if (data.roles) {
-                            user.roles = data.roles 
+                            user.roles = data.roles;
                         }
         
                         if (data.status) {
-                            user.status = data.status
+                            user.status = data.status;
                         }
         
                         if (data.password) {
-                            user.password = data.password
+                            user.password = data.password;
                         }
         
-                        await user.save()
+                        await user.save();
 
                         return {
                             code: 200,
                             status: true,
                             message: 'User successfully updated.'
-                        }
+                        };
                     })
                     .catch(err => {
         
                         for (var key in err.errors) {
-                            throw new Error(err.errors[key].message)
+                            throw new Error(err.errors[key].message);
                         }
         
-                        throw new Error(err)
-                    })
+                        throw new Error(err);
+                    });
         
             } catch (e) {
         
@@ -90,7 +90,7 @@ module.exports = (app) => {
                     status: false,
                     message: e.message  || 'Unable to update user.',
                     exception: e.message
-                }
+                };
         
             }
             
@@ -106,16 +106,16 @@ module.exports = (app) => {
                             code: 200,
                             status: true,
                             message: 'User successfully removed.'
-                        }
+                        };
                     })
                     .catch(err => {
         
                         for (var key in err.errors) {
-                            throw new Error(err.errors[key].message)
+                            throw new Error(err.errors[key].message);
                         }
         
-                        throw new Error(err)
-                    })
+                        throw new Error(err);
+                    });
         
             } catch (e) {
         
@@ -124,12 +124,12 @@ module.exports = (app) => {
                     status: false,
                     message: e.message || 'Unable to remove user.',
                     exception: e.message
-                }
+                };
         
             }
 
         }
 
-    }
+    };
 
-}
+};

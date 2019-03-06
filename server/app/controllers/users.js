@@ -11,9 +11,9 @@ module.exports = (app) => {
             level: 'error',
             message: e.message,
             filename: __filename
-        })
+        });
 
-    }
+    };
 
     // ------------------------------------------------------------------------
 
@@ -28,9 +28,9 @@ module.exports = (app) => {
             try {
 
                 // Paginate
-                let limit = 10
-                let page = req.query.page || 0
-                let offset = page * limit
+                let limit = 10;
+                let page = req.query.page || 0;
+                let offset = page * limit;
         
                 // Get users by model
                 let users = await app.models.user.paginate({}, {
@@ -38,24 +38,24 @@ module.exports = (app) => {
                     limit
                 })
                     .then(users => {
-                        return users
+                        return users;
                     })
                     .catch(() => {
-                        throw new Error('Unable to load users.')
-                    })
+                        throw new Error('Unable to load users.');
+                    });
 
                 // return json
-                res.status(200).json({ users })
+                res.status(200).json({ users });
 
             } catch (e) {
 
                 // Invoke logger
-                catchError(e)
+                catchError(e);
 
                 // Return error message
                 res.status(500).json({
                     error: e.message
-                })
+                });
 
             }
 
@@ -68,21 +68,21 @@ module.exports = (app) => {
 
             try {
 
-                let response = await app.services.users.store(req.body)
+                let response = await app.services.users.store(req.body);
 
                 if (! response.status) {
-                    throw new Error(response.message)
+                    throw new Error(response.message);
                 }
 
-                res.status(response.code).json(response)
+                res.status(response.code).json(response);
 
             } catch (e) {
                 
-                catchError(e)
+                catchError(e);
 
                 res.status(500).json({
                     error: e.message
-                })
+                });
 
             }
 
@@ -92,21 +92,21 @@ module.exports = (app) => {
 
             try {
 
-                let response = await app.services.users.update(req.params.id, req.body)
+                let response = await app.services.users.update(req.params.id, req.body);
         
                 if (! response.status) {
-                    throw new Error(response.message)
+                    throw new Error(response.message);
                 }
         
-                res.status(200).json(response)
+                res.status(200).json(response);
 
             } catch (e) {
                 
-                catchError(e)
+                catchError(e);
 
                 res.status(500).json({
                     error: e.message
-                })
+                });
 
             }
             
@@ -118,23 +118,23 @@ module.exports = (app) => {
 
                 let user = await app.models.user.findById(req.params.id)
                     .then(user => {
-                        return user
+                        return user;
                     })
                     .catch(() => {
-                        throw new Error('Could not load user data.')
-                    })
+                        throw new Error('Could not load user data.');
+                    });
 
                 res.status(200).json({
                     user
-                })
+                });
 
             } catch (e) {
 
-                catchError(e)
+                catchError(e);
 
                 res.status(500).json({
                     error: e.message
-                })
+                });
 
             }
             
@@ -144,25 +144,25 @@ module.exports = (app) => {
 
             try {
 
-                let response = await app.services.users.destroy(req.params.id)
+                let response = await app.services.users.destroy(req.params.id);
         
                 if (! response.status) {
-                    throw new Error(response.message)
+                    throw new Error(response.message);
                 } 
 
-                res.status(200).json(response)
+                res.status(200).json(response);
 
             } catch (e) {
                 
-                catchError(e)
+                catchError(e);
 
                 res.status(500).json({
                     error: e.message
-                })
+                });
 
             }
             
         }
 
-    }
-}
+    };
+};

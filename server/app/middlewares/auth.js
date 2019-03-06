@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 module.exports = () => {
     return {
@@ -6,8 +6,8 @@ module.exports = () => {
 
             // your logic
 
-            next()
+            next();
         }
-    }
-}
+    };
+};
 
