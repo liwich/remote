@@ -12,9 +12,12 @@ export class ProfilePage {
   currentSong$: any;
   currentSong: any;
   isPlaying: boolean;
+  loading = true;
+
   constructor(private profileService: ProfileService) {}
 
   ionViewWillEnter() {
+    this.loading = true;
     this.profile$ = this.profileService.getProfile()
     .subscribe((data) => {
       this.profile = data;
@@ -23,12 +26,15 @@ export class ProfilePage {
 
     this.currentSong$ = this.profileService.getCurrentSong()
     .subscribe((data) => {
+      this.loading = false;
       if (!data.is_playing) {
         this.isPlaying = false;
       } else {
         this.isPlaying = true;
         this.currentSong = data;
       }
+    }, (err) => {
+      this.loading = false;
     });
   }
 }

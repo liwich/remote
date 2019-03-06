@@ -1,27 +1,36 @@
 <ion-header>
   <ion-toolbar color="dark">
     <ion-title color="success" text-center>
-      {{profile?.display_name}} is playing
+      <small>{{profile?.display_name}} is playing</small>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content color="light" padding>
-  <div class="no-songs" *ngIf="!isPlaying">
+<ion-content color="dark" padding>
+  <div *ngIf="loading">
+    <div text-center class="loader-big">
+        <ion-spinner name="circles" color="success"></ion-spinner>
+    </div>
+  </div>
+
+  <div *ngIf="!loading">
+    <div class="no-songs" *ngIf="!isPlaying">
       <h1>No songs playing</h1>
       <p>The user {{profile?.id}} is not listening songs</p>
       <ion-icon class="icon" name="eye-off" color="medium"></ion-icon>
-  </div>
+    </div>
 
-  <div class="current-song" *ngIf="isPlaying">
-    <ion-row>
-      <ion-col size="12">
+    <div class="current-song" *ngIf="isPlaying">
+      <ion-row>
+        <ion-col size="12">
           <img [src]="currentSong.item.album.images[0].url" alt="">
           <span>{{currentSong.item.name}}</span>
           <br>
           <small>{{currentSong.item.artists[0].name}}</small>
-      </ion-col>
-    </ion-row>
-    
+        </ion-col>
+      </ion-row>
+    </div>
+
   </div>
+
 </ion-content>

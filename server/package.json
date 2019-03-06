@@ -6,8 +6,9 @@
     "node": ">=8.11.3"
   },
   "scripts": {
-    "start": "nodemon ./bin/www",
-    "dev": "nodemon -e js ./bin/www",
+    "start": "node ./bin/www",
+    "dev": "nodemon --inspect -e js ./bin/www",
+    "dev-brk": "nodemon --inspect-brk -e js ./bin/www",
     "eslint": "./node_modules/.bin/eslint ."
   },
   "husky": {

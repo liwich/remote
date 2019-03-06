@@ -1,18 +1,31 @@
-<ion-header>
+<ion-header color="dark">
   <ion-toolbar color="dark">
     <ion-title>
-      Playlists
+      <small>Playlists</small>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-item *ngFor="let playlist of playlists | async">
-      <ion-avatar slot="start">
-        <img [src]="">
-      </ion-avatar>
-      <ion-label>{{playlist.name}}</ion-label>
-    </ion-item>
-  </ion-list>
+<ion-content color="dark">
+  <div>
+    <div text-center *ngIf="loading">
+      <ion-row align-items-center>
+        <ion-col align-self-center>
+          <ion-spinner name="circles" color="success"></ion-spinner>
+        </ion-col>
+      </ion-row>
+    </div>
+    <ion-list *ngIf="playlists">
+      <ion-list-header>
+        <ion-searchbar placeholder="Filtro" color="dark" animated  [(ngModel)]="searchTerm" (ionChange)="filterPlaylists()" debounce="200"></ion-searchbar>
+      </ion-list-header>
+      <ion-item *ngFor="let playlist of playlists" color="dark">
+        <ion-avatar slot="start">
+          <img [src]="playlist.images.length > 0? playlist.images[0].url: 'assets/default-image.png'">
+        </ion-avatar>
+        <ion-label>{{playlist.name}}</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
 </ion-content>
