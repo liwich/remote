@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../../services/profile.service';
 
 @Component({
@@ -6,19 +6,22 @@ import { ProfileService } from '../../services/profile.service';
   templateUrl: 'profile.page.html',
   styleUrls: ['profile.page.scss']
 })
-export class ProfilePage {
+export class ProfilePage implements OnInit{
   profile: any;
   profile$: any;
   currentSong$: any;
   currentSong: any;
   isPlaying: boolean;
-  loading = true;
+  loading = false;
   isPaused: boolean;
 
   constructor(private profileService: ProfileService) {}
 
-  ionViewWillEnter() {
+  ngOnInit() {
     this.loading = true;
+  }
+
+  ionViewWillEnter() {
     this.getProfile();
     this.getCurrentSong();
   }

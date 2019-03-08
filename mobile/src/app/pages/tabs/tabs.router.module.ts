@@ -33,11 +33,6 @@ const routes: Routes = [
             loadChildren: '../tab3/tab3.module#Tab3PageModule'
           }
         ]
-      },
-      {
-        path: '',
-        redirectTo: '/tabs/profile',
-        pathMatch: 'full'
       }
     ]
   },

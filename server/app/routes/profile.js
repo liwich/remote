@@ -66,11 +66,10 @@ module.exports = (app) => {
 
     /**
      * @swagger
-     * /profile/playlist/:playlistId/tracks:
+     * /profile/playlist/:name:
      *   post:
      *     tags:
      *       - profile
-     *       - playlists
      *     description: Adds new profile playlist
      *     produces:
      *       - application/json

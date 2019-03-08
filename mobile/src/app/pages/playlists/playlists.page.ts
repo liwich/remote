@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { ProfileService } from 'src/app/services/profile.service';
   templateUrl: 'playlists.page.html',
   styleUrls: ['playlists.page.scss']
 })
-export class PlaylistsPage {
+export class PlaylistsPage implements OnInit{
   playlists: any;
   loading = true;
   playlists$: any;
@@ -14,7 +14,7 @@ export class PlaylistsPage {
   playlistsTem: any;
   constructor(private profileService: ProfileService) { }
 
-  ionViewWillEnter() {
+  ngOnInit() {
     this.loading = true;
     this.getPlaylists();
   }

@@ -27,7 +27,7 @@
         <ion-searchbar placeholder="Filtro" color="dark" animated [(ngModel)]="searchTerm"
           (ionChange)="filterPlaylists()" debounce="200"></ion-searchbar>
       </ion-list-header>
-      <ion-item *ngFor="let playlist of playlists" color="dark">
+      <ion-item *ngFor="let playlist of playlists" color="dark" routerLink="/playlist/2/songs">
         <ion-thumbnail slot="start">
           <img [src]="playlist.images.length > 0? playlist.images[0].url: 'https://dummyimage.com/100x100/078f12/fff&text='+playlist.name.toUpperCase().split('')[0]">
         </ion-thumbnail>
