@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
-  selector: 'app-tab2',
-  templateUrl: 'tab2.page.html',
-  styleUrls: ['tab2.page.scss']
+  selector: 'app-playlists',
+  templateUrl: 'playlists.page.html',
+  styleUrls: ['playlists.page.scss']
 })
-export class Tab2Page {
+export class PlaylistsPage {
   playlists: any;
   loading = true;
   playlists$: any;
