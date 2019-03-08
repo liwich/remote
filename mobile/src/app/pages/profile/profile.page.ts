@@ -13,28 +13,55 @@ export class ProfilePage {
   currentSong: any;
   isPlaying: boolean;
   loading = true;
+  isPaused: boolean;
 
   constructor(private profileService: ProfileService) {}
 
   ionViewWillEnter() {
     this.loading = true;
+    this.getProfile();
+    this.getCurrentSong();
+  }
+
+  getProfile() {
     this.profile$ = this.profileService.getProfile()
     .subscribe((data) => {
-      this.profile = data;
+      return this.profile = data;
     },
-    (err) => console.log('error'));
+    (err) => {
+      console.error(err);
+    });
+  }
 
+  getCurrentSong() {
     this.currentSong$ = this.profileService.getCurrentSong()
     .subscribe((data) => {
       this.loading = false;
-      if (!data.is_playing) {
-        this.isPlaying = false;
-      } else {
+      if (!data) {
         this.isPlaying = true;
-        this.currentSong = data;
+      } else {
+        if (!data.is_playing) {
+          this.isPaused = true;
+        } else {
+          this.isPlaying = true;
+        }
+        return this.currentSong = data;
       }
     }, (err) => {
       this.loading = false;
+      console.error(err);
     });
+  }
+
+  skipBack() {
+
+  }
+
+  playPause() {
+
+  }
+
+  skipForward() {
+
   }
 }

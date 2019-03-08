@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
+  profile: any;
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -26,11 +27,19 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.router.navigate(['loading']);
-      this.profileService.getProfile()
+      this.getProfile();
+    });
+  }
+
+  getProfile() {
+    this.profileService.getProfile()
       .subscribe((profile) => {
         this.router.navigateByUrl('');
+        return this.profile = profile;
       },
-      (err) => this.router.navigateByUrl('profile-error'));
-    });
+      (err) => {
+        this.router.navigateByUrl('profile-error');
+        return err;
+      });
   }
 }

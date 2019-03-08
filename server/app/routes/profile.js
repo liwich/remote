@@ -25,12 +25,12 @@ module.exports = (app) => {
      *   get:
      *     tags:
      *       - profile
-     *     description: Returns profile information
+     *     description: Returns profile track playing
      *     produces:
      *       - application/json
      *     responses:
      *       200:
-     *         description: Profile object
+     *         description: Track object
      */
     app.get('/profile/listening', c(controller.listening));
 
@@ -40,12 +40,12 @@ module.exports = (app) => {
      *   get:
      *     tags:
      *       - profile
-     *     description: Returns profile information
+     *     description: Returns profile playlists
      *     produces:
      *       - application/json
      *     responses:
      *       200:
-     *         description: Profile object
+     *         description: Playlists object
      */
     app.get('/profile/playlists', c(controller.playlists));
 
@@ -55,14 +55,28 @@ module.exports = (app) => {
      *   get:
      *     tags:
      *       - profile
-     *     description: Returns profile information
+     *     description: Returns playlist tracks
      *     produces:
      *       - application/json
      *     responses:
      *       200:
-     *         description: Profile object
+     *         description: Tracks object
      */
     app.get('/profile/playlist/:playlistId/tracks', c(controller.playlistTracks, (req, res, next) => [req.params.playlistId]));
 
+    /**
+     * @swagger
+     * /profile/playlist/:playlistId/tracks:
+     *   post:
+     *     tags:
+     *       - profile
+     *       - playlists
+     *     description: Adds new profile playlist
+     *     produces:
+     *       - application/json
+     *     responses:
+     *       200:
+     *         description: Playlist object
+     */
     app.post('/profile/playlist/:name', c(controller.addPlaylist, (req, res, next) => [req.params.name]));
 };
