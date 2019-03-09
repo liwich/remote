@@ -1,4 +1,5 @@
 const SpotifyWebApi = require('spotify-web-api-node');
+const request = require('superagent');
 
 const spotifyApi = new SpotifyWebApi({
     refreshToken: 'AQChjEs2JC04Py57kuIHO1n6csDc-CSbdfrLXY8k5-js8IOVwawkzEjtT5vFr1wompp6LMUQLTy83RNSeN_1ZAhmGZHriz7ek7Z0rxuPKtQu7LLHdNYEEuLuGP38k6Q74inIrw',
@@ -14,9 +15,15 @@ module.exports = () => {
         playlistTracks: playlistTracks,
         addPlaylist: addPlaylist,
         addPlaylistTrack: addPlaylistTrack,
-        removePlaylistTrack: removePlaylistTrack
+        removePlaylistTrack: removePlaylistTrack,
+        getToken: getToken
     };
 };
+
+async function getToken(clientId, clientSecret, code) {
+    const data = await request.post('https://accounts.spotify.com/api/token');
+    return data;
+}
 
 async function getProfile() {
     await refreshAccessToken();

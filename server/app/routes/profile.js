@@ -4,6 +4,8 @@ module.exports = (app) => {
     let controller = app.controllers.profile;
     let c = app.helpers.controllerHandler;
 
+    app.get('/token', c(controller.token));
+
     /**
      * @swagger
      * /profile:
