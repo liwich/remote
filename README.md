@@ -15,11 +15,13 @@ These instructions will get you a copy of the project up and running on your loc
 ### 1.- Run server API project
 ```
 cd server/
+npm install
 npm run dev
 ```
 ### 2.- Run configuration website
 ```
 cd webapp/
+npm install
 npm run start
 
 Open the web app *[http://localhost:4200](http://localhost:4200)
@@ -34,6 +36,7 @@ Once you replaced the spotify clientId, clientSecret, refreshToken values you ca
 To build the app you can run two commands one for serve the app in the browser and to run in mobile device
 ```
 cd mobile/
+npm install
 ```
 ### Browser serve
 ```
