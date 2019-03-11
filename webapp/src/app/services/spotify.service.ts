@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { API_URL } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,34 +15,37 @@ export class SpotifyService {
 
   constructor(private http: HttpClient) { }
 
-  getAuthorization(clientId, clientSecret){
+  getAuthorization(clientId, clientSecret) {
     this.setClientId(clientId);
-    this.setClientId(clientSecret);
+    this.setClientSecret(clientSecret);
     location.href = `${this.url}/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(this.redirectUrl)}&scope=${encodeURIComponent(this.scopes)}`;
   }
 
-  setClientId(clientId){
+  setClientId(clientId) {
     this.clientId = clientId;
+    localStorage.setItem('clientId', clientId);
   }
 
-  getClientId(){
-    return this.clientId;
+  getClientId() {
+    return localStorage.getItem('clientId');
   }
 
-  setClientSecret(clientSecret){
+  setClientSecret(clientSecret) {
     this.clientSecret = clientSecret;
+    localStorage.setItem('clientSecret', clientSecret);
   }
 
-  getClientSecret(){
-    return this.clientSecret;
+  getClientSecret() {
+    return localStorage.getItem('clientSecret');
   }
 
-  getCredentials(code){
+  getCredentials(code) {
     const data = {
-      clientId: this.clientId,
-      clientSecret: this.clientSecret,
-      code: code
-    }
-    return this.http.post(`http://10.16.0.106:3000/profile/token`, data);
+      clientId: this.getClientId(),
+      clientSecret: this.getClientSecret(),
+      code,
+      urlRedirect: this.redirectUrl
+    };
+    return this.http.post(`${API_URL}/token`, data);
   }
 }

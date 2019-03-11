@@ -20,9 +20,14 @@ module.exports = () => {
     };
 };
 
-async function getToken(clientId, clientSecret, code) {
-    const data = await request.post('https://accounts.spotify.com/api/token');
-    return data;
+async function getToken(clientId, clientSecret, code, urlRedirect) {
+    let authorization = Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
+    const data = await request.post('https://accounts.spotify.com/api/token')
+        .send('grant_type=authorization_code')
+        .send(`code=${code}`)
+        .send(`redirect_uri=${urlRedirect}`)
+        .set('Authorization', `Basic ${authorization}`);
+    return data.body || {};
 }
 
 async function getProfile() {

@@ -14,11 +14,11 @@ export class AuthorizationComponent implements OnInit {
 
   ngOnInit() {
     this.url = window.location.href;
-    this.clientId = '345d484bea0f4d30adc30c0453563e40';
-    this.clientSecret = '2b7fb1b02d1345b9920a0cddf622cc4e';
+    this.clientId = '';
+    this.clientSecret = '';
   }
 
-  requestAuthorization(){
+  requestAuthorization() {
     this.spotifyService.getAuthorization(this.clientId, this.clientSecret);
   }
 

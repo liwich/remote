@@ -4,7 +4,7 @@ module.exports = (app) => {
     let controller = app.controllers.profile;
     let c = app.helpers.controllerHandler;
 
-    app.get('/token', c(controller.token));
+    app.post('/token', c(controller.token, (req, res, next) => [req.body.clientId, req.body.clientSecret, req.body.code, req.body.urlRedirect]));
 
     /**
      * @swagger

@@ -24,8 +24,8 @@ module.exports = (app) => {
             return await services.spotifyApi.addPlaylist(name);
         },
 
-        token: async(clientId, clientSecret, code) => {
-            return await services.spotifyApi.getToken(clientId, clientSecret, code);
+        token: async(clientId, clientSecret, code, urlRedirect) => {
+            return await services.spotifyApi.getToken(clientId, clientSecret, code, urlRedirect);
         }
 
     };
